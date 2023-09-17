@@ -3,7 +3,7 @@ import axios from "../node_modules/axios/index";
 const form = document.querySelector("form") as HTMLFormElement;
 const addressInput = document.getElementById("address") as HTMLInputElement;
 
-const GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY";
+const GOOGLE_API_KEY = "YOUR_GOOGLE_KEY";
 
 async function searchAddressHandler(event: Event) {
   event.preventDefault();
@@ -11,14 +11,17 @@ async function searchAddressHandler(event: Event) {
   const { Map } = (await google.maps.importLibrary(
     "maps"
   )) as google.maps.MapsLibrary;
+  //   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
+  //     "marker"
+  //   )) as google.maps.MarkerLibrary;
 
-  type googleGeocodingResponce = {
+  type googleGeocodingResponse = {
     results: { geometry: { location: { lat: number; lng: number } } }[];
     status: "OK" | "ZERO_RESULTS";
   };
 
   try {
-    const res = await axios.get<googleGeocodingResponce>(
+    const res = await axios.get<googleGeocodingResponse>(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(
         enterAddress
       )}&key=${GOOGLE_API_KEY}`
