@@ -11,9 +11,6 @@ async function searchAddressHandler(event: Event) {
   const { Map } = (await google.maps.importLibrary(
     "maps"
   )) as google.maps.MapsLibrary;
-  //   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
-  //     "marker"
-  //   )) as google.maps.MarkerLibrary;
 
   type googleGeocodingResponse = {
     results: { geometry: { location: { lat: number; lng: number } } }[];
